@@ -1,0 +1,28 @@
+extends layout 
+block content
+  .row.banner
+    .col-12-car
+      h1 Cars
+        small &nbsp;#{pageHeader.strapline}
+  .row
+    .col-12.col-md-8
+
+      each car in cars
+        .card-car-block
+          .card-block-car
+            h4
+            a(href="/cars/car")= car.brand + "   " + car.modelname + "   "
+            br
+            br
+            span= car.type + "    "
+            span= car.engine + "         " 
+            span= car.seats + "         "
+            span= car.seattype + "         " 
+            span= car.miles + "         " 
+            span= car.rating
+            
+           
+     
+
+    .col-12-car.col-md-4
+      p.lead Car go vroooooooooooooooooooooooooooom.

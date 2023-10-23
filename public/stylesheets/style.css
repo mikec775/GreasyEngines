@@ -1,6 +1,8 @@
 @import url("//fonts.googleapis.com/css?family=Roboto|Roboto:400,700");
 
 body {
+  padding: 0;
+  margin: 0;
   margin-top: 5% !important;
   font-family: "Roboto", Arial, sans-serif;
   color: #ffffff;
@@ -82,4 +84,39 @@ h4 small {
 
 legend {
   font-family: 'Roboto', cursive;
+}
+
+.card-car {
+
+  background-color: #469ea8;
+  margin: 1em;
+  width: 80%;
+
+}
+
+.card-car-block {
+
+  background-color: #469ea8;
+  margin: 1em;
+  width: auto;
+  margin-left: 10%;
+  margin-right: 10%;
+
+}
+
+.card-block-car {
+
+    width: 80%;
+    padding: 1em;
+}
+
+span {
+
+  margin-right: 1em;
+
+}
+
+.col-12-car {
+
+  margin-left: 10%;
 }
