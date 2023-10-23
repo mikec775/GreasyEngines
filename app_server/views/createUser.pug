@@ -25,8 +25,9 @@ block content
                   input#floatingPasswordConfirm.form-control(type='password', placeholder='Confirm Password')
                   label(for='floatingPasswordConfirm') Confirm Password
                   .d-grid
-                  button.btn.btn-lg.btn-primary.btn-login.fw-bold.text-uppercase(type='submit') Register
-                  a.d-block.text-center.mt-2.small(href='#') Have an account? Sign In
+                  button.btn.btn-lg.btn-primary.btn-login.fw-bold.text-uppercase(type='submit' onlick="register()") Register
+                  br
+                  a.d-block.text-center.mt-2.small(href='/login/') Have an account? Sign In
                   hr.my-4
                   .d-grid.mb-2
                   button.btn.btn-lg.btn-google.btn-login.fw-bold.text-uppercase(type='submit')
