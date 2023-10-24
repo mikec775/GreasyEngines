@@ -6,7 +6,7 @@ body {
   margin-top: 5% !important;
   font-family: "Roboto", Arial, sans-serif;
   color: #ffffff;
-  background-color: #108a93;
+  background-color: #4e50d8;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -17,8 +17,8 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   width: 100%;
   top: 0;
-  background-color: #304154;
-  border-color: #36485c;
+  background-color: #4e50d8 !important;
+  border-color: #4e50d8;
   margin-bottom: 3%;
 }
 
@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .banner {
   margin-top: 4em;
-  border-bottom: 1px solid #469ea8;
+  border-bottom: 1px solid #4e50d8;
   margin-bottom: 1.5em;
   padding-bottom: 0.5em;
 }
@@ -38,7 +38,13 @@ h1 small {
 }
 
 .card {
-  background-color: #469ea8;
+  background-color: #1a1b1b;
+}
+
+.card-body {
+  background-color: #1a1b1b;
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 .card-primary {
@@ -88,7 +94,7 @@ legend {
 
 .card-car {
 
-  background-color: #469ea8;
+  background-color: #4e50d8;
   margin: 1em;
   width: 80%;
 
@@ -96,7 +102,7 @@ legend {
 
 .card-car-block {
 
-  background-color: #469ea8;
+  background-color: #4e50d8;
   margin: 1em;
   width: auto;
   margin-left: 10%;
@@ -119,4 +125,35 @@ span {
 .col-12-car {
 
   margin-left: 10%;
+}
+
+a{
+
+  color:rgb(183, 247, 247) !important;
+
+}
+
+a:visited{
+
+  color:rgb(183, 247, 247) !important;
+
+}
+
+a:hover{
+
+  color:rgb(96, 171, 171);
+  text-decoration: none;
+
+}
+
+.navbar-toggler.navbar-toggler-right{
+
+  background-color: white;
+
+}
+
+.padder {
+
+  padding: 1em;
+  
 }

@@ -13,6 +13,6 @@ router.get('/login', ctrlOthers.login);
 router.get('/createUser', ctrlOthers.createUser);
 
 router.get('/cars', ctrlCars.cardata);
-router.get('/cars/telsa', ctrlCars.cardata);
+router.get('/cars/car', ctrlCars.carinfo);
 
 module.exports = router;
