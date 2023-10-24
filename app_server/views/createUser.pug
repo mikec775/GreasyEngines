@@ -10,18 +10,17 @@ block content
             h5.card-title.text-center.mb-5.fw-light.fs-5 Register
             form
                   .form-floating.mb-3
-                  input#floatingInputUsername.form-control(type='text', placeholder='myusername', required='', autofocus='')
                   label(for='floatingInputUsername') Username
+                  input#floatingInputUsername.form-control(type='text', placeholder='myusername', required='', autofocus='')
                   .form-floating.mb-3
-                  input#floatingInputEmail.form-control(type='email', placeholder='name@example.com')
                   label(for='floatingInputEmail') Email address
-                  hr
+                  input#floatingInputEmail.form-control(type='email', placeholder='name@example.com')
                   .form-floating.mb-3
-                  input#floatingPassword.form-control(type='password', placeholder='Password')
                   label(for='floatingPassword') Password
+                  input#floatingPassword.form-control(type='password', placeholder='Password')
                   .form-floating.mb-3
-                  input#floatingPasswordConfirm.form-control(type='password', placeholder='Confirm Password')
                   label(for='floatingPasswordConfirm') Confirm Password
+                  input#floatingPasswordConfirm.form-control(type='password', placeholder='Confirm Password')
                   .d-grid
                   button.btn.btn-lg.btn-primary.btn-login.fw-bold.text-uppercase(type='submit' onlick="register()") Register
                   br
