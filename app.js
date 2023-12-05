@@ -25,7 +25,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'app_public')));
+app.use(express.static(path.join(__dirname, 'app_public', 'build')));
+
 
 app.use('/api', function(req, res, next) {
   res.header('Access-Control-Allow-Origin',
@@ -34,10 +35,10 @@ app.use('/api', function(req, res, next) {
   next();
   });
 
-
-
 app.use('/', indexRouter);
 app.use('/api', apiRoutes);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -53,6 +54,17 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.post('/api/register', (req, res) => {
+  const newUser = new User(req.body);
+  newUser.save((err, user) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(201).json(user);
+    }
+  });
 });
 
 const cors = require('cors');
