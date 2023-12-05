@@ -8,8 +8,8 @@ const ctrlCars = require('../controllers/cars');
 router.get('/', ctrlMain.index);
 router.get('/index', ctrlMain.index);
 
-
 router.get('/login', ctrlOthers.login);
+
 router.get('/createUser', ctrlOthers.createUser);
 
 router.get('/cars', ctrlCars.cardata);

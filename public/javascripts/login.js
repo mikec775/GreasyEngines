@@ -3,22 +3,22 @@
 function validation(){
 
 
-        alert("button clicked do validation later");
+    alert("button clicked do validation later");
 
 
 }
 
-function forgot(){
+function forgotPassword(){
 
 
-    alert("button clicked will open new page later");
+    window.location.href = 'http://localhost:3000/createUser/';
 
 }
 
 function signUp(){
 
 
-    window.location = 'http://localhost:3000/createUser/';
+    window.location.href = 'http://localhost:3000/createUser/';
 
 
 }
