@@ -9,7 +9,7 @@ router.get('/', ctrlMain.index);
 router.get('/index', ctrlMain.index);
 
 router.get('/login', ctrlOthers.login);
-
+router.get('/register', ctrlOthers.register);
 router.get('/createUser', ctrlOthers.createUser);
 
 router.get('/cars', ctrlCars.cardata);

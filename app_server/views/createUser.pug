@@ -1,38 +1,36 @@
 extends layout
-   
+
 block content
-
- .container
-   .row
+  .container
+    .row
       .col-lg-10.col-xl-9.mx-auto
-            .card-img-left.d-none.d-md-flex
+        .card-img-left.d-none.d-md-flex
+        h5.card-title.text-center.mb-5.fw-light.fs-5 Register
+        form(action='/register', method='post') 
+          .form-floating.mb-3
+            label(for='username') Username
+            input#username.form-control(type='text', name='username', placeholder='myusername', required='', autofocus='')
+          .form-floating.mb-3
+            label(for='email') Email address
+            input#email.form-control(type='email', name='email', placeholder='name@example.com')
+          .form-floating.mb-3
+            label(for='password') Password
+            input#password.form-control(type='password', name='password', placeholder='Password')
+          .form-floating.mb-3
+            label(for='passwordConfirm') Confirm Password
+            input#passwordConfirm.form-control(type='password', name='passwordConfirm', placeholder='Confirm Password')
+          .d-grid
+            button.btn.btn-lg.btn-primary.btn-login.fw-bold.text-uppercase(type='submit') Register
+          br
+          a.d-block.text-center.mt-2.small(href='/login/') Have an account? Sign In
+          hr.my-4
+          .d-grid.mb-2
+            button.btn.btn-lg.btn-google.btn-login.fw-bold.text-uppercase(type='submit')
+              i.fab.fa-google.me-2
+            |  Sign up with Google
+          .d-grid
+            button.btn.btn-lg.btn-facebook.btn-login.fw-bold.text-uppercase(type='submit')
+              i.fab.fa-facebook-f.me-2
+            |  Sign up with Facebook
 
-            h5.card-title.text-center.mb-5.fw-light.fs-5 Register
-            form
-                  .form-floating.mb-3
-                  label(for='floatingInputUsername') Username
-                  input#floatingInputUsername.form-control(type='text', placeholder='myusername', required='', autofocus='')
-                  .form-floating.mb-3
-                  label(for='floatingInputEmail') Email address
-                  input#floatingInputEmail.form-control(type='email', placeholder='name@example.com')
-                  .form-floating.mb-3
-                  label(for='floatingPassword') Password
-                  input#floatingPassword.form-control(type='password', placeholder='Password')
-                  .form-floating.mb-3
-                  label(for='floatingPasswordConfirm') Confirm Password
-                  input#floatingPasswordConfirm.form-control(type='password', placeholder='Confirm Password')
-                  .d-grid
-                  button.btn.btn-lg.btn-primary.btn-login.fw-bold.text-uppercase(type='submit' onlick="register()") Register
-                  br
-                  a.d-block.text-center.mt-2.small(href='/login/') Have an account? Sign In
-                  hr.my-4
-                  .d-grid.mb-2
-                  button.btn.btn-lg.btn-google.btn-login.fw-bold.text-uppercase(type='submit')
-                        i.fab.fa-google.me-2
-                  |  Sign up with Google
-                  .d-grid
-                  button.btn.btn-lg.btn-facebook.btn-login.fw-bold.text-uppercase(type='submit')
-                        i.fab.fa-facebook-f.me-2
-                  |  Sign up with Facebook
-
-                  
+      script(src='/javscripts/register.js')

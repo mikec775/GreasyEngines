@@ -11,8 +11,14 @@ const cars = function(req, res){
     res.render('cars', { title: 'Cars' });
 };
 
+const register = function(req, res){
+    res.render('register', { title: 'register' });
+};
+
+
 module.exports = { 
 createUser,
 login,
-cars
+cars,
+register
 };
