@@ -1,6 +1,9 @@
 // Import necessary modules
 const createError = require('http-errors');
 const express = require('express');
+const https = require('https');
+const http = require('http');
+const fs = require('fs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -15,6 +18,12 @@ const apiRoutes = require('./app_api/routes/cars');
 
 const app = express();
 
+const privateKey = fs.readFileSync('./public/sslcert/key.pem', 'utf8');
+const certificate = fs.readFileSync('./public/sslcert/cert.pem', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app)
 
 const session = require('express-session');
 const passport = require('passport');
@@ -86,7 +95,14 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+httpServer.listen(80, () => {
+  console.log('HTTP Server running on port 80');
+});
 
+
+httpsServer.listen(443, () => {
+  console.log('HTTPS Server running on port 443');
+});
 
 
 module.exports = app;
