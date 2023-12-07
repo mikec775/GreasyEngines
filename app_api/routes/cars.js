@@ -12,8 +12,7 @@ router
   .route('/users/:username')
   .get(UsersController.usersReadOne)
   .post(UsersController.usersReadOne)
-  
-  
+
 router
   .route('/cars')
   .get(CarsController.carsListByDistance)  
@@ -24,5 +23,20 @@ router
   .get(CarsController.carsReadOne)
   .put(CarsController.carsUpdateOne)
   .delete(CarsController.carsDeleteOne);
+
+router
+  .route('/register')
+  .get(UsersController.usersCreate)
+  .post(UsersController.usersCreate);
+
+router
+  .route('/login')
+  .get(UsersController.usersLogin)
+  .post(UsersController.usersLogin);
+
+router
+  .route('/logout')
+  .get(UsersController.usersLogout)
+  .post(UsersController.usersLogout);
 
 module.exports = router;

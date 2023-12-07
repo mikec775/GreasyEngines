@@ -5,6 +5,82 @@ body{
 
 form {
 
-    padding: 5em;
+    padding: 1em;
 
 }
+
+.form-container{
+
+    border: 1px solid rgb(48, 46, 46);
+    padding: 5em;
+    margin-right: 15%;
+    min-width: 400px;
+    margin-left: 30%;
+    margin-bottom: 1em;
+
+}
+
+.signup-container{
+
+    border: 1px solid rgb(48, 46, 46);
+    width: 60%;
+    padding: 4.3em;
+    margin-left: 30%;
+
+}
+
+.flex-container {
+    margin-top: 1em;
+    display: flex;
+    padding: 3em;
+}
+
+@media only screen and (max-width: 1000px) {
+    .flex-container {
+        flex-direction: column;
+    }
+
+    .form-container, .signup-container{
+
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    .signup-container{
+
+        width: 100%;
+
+    }
+
+  }
+
+  
+@media only screen and (max-width: 500px) {
+    
+
+    .form-container{
+
+        width: 100%;
+        min-width: 90%;
+        padding: 2em;
+        margin-right: 0;
+        margin-bottom: 1em;
+        margin-top: 3em;
+    }
+
+    .form-container, .signup-container{
+
+        margin-left: 0;
+        margin-right: 0;
+
+    }
+
+    .flex-container{
+
+        margin: 0;
+        padding: 1em;
+    }
+   
+
+  }

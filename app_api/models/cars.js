@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const carSchema = new mongoose.Schema({ 
    brand: String,
@@ -36,4 +37,6 @@ const userSchema = new mongoose.Schema({
 
 
 mongoose.model('Cars', carSchema);
-mongoose.model('Users', userSchema);
+
+userSchema.plugin(passportLocalMongoose);
+module.exports = mongoose.model('Users', userSchema);

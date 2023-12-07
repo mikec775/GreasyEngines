@@ -6,7 +6,7 @@ block content
       .col-lg-10.col-xl-9.mx-auto
         .card-img-left.d-none.d-md-flex
         h5.card-title.text-center.mb-5.fw-light.fs-5 Register
-        form(action='/register', method='post') 
+        form(action='/api/register', method='post') 
           .form-floating.mb-3
             label(for='username') Username
             input#username.form-control(type='text', name='username', placeholder='myusername', required='', autofocus='')

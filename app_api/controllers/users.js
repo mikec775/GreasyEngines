@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('Users');
 
+const passport = require('passport');
 
 const usersCreate = async function(req, res) {
   const { username, email, password } = req.body;
@@ -13,28 +14,32 @@ const usersCreate = async function(req, res) {
       return res.status(409).json({ "message": "Username already exists" });
     }
 
-    
-    const user = await User.create({
+  
+    const newUser = await User.create({
       username,
       email,
       password
     });
 
-    
-    res.cookie('username', user.username, { maxAge: 900000, httpOnly: true });
-    return res.status(201).json(user);
+   
+    req.login(newUser, (loginErr) => {
+      if (loginErr) {
+        console.error(loginErr);
+        return res.status(500).json({ "message": "Internal Server Error during login" });
+      }
+
+      
+      res.cookie('username', newUser.username, { maxAge: 900000, httpOnly: true });
+
+      
+      res.redirect('/login?registration=success');
+    });
 
   } catch (error) {
     console.error(error);
     return res.status(500).json({ "message": "Internal Server Error" });
   }
 };
-
-module.exports = {
-  usersCreate,
-  // other functions...
-};
-
 
 
 const usersList = function(req, res) {
@@ -74,10 +79,61 @@ const usersDeleteOne = function(req, res) {
   res.status(200).json({ "status": "success" });
 };
 
+
+const usersLogin = function(req, res) {
+  
+  passport.authenticate('local-login', { session: false }, (err, user, info) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ "message": "Internal Server Error" });
+    }
+
+  
+    if (!user) {
+      return res.status(401).json({ "message": info.message });
+    }
+
+    
+    req.login(user, (loginErr) => {
+      if (loginErr) {
+        console.error(loginErr);
+        return res.status(500).json({ "message": "Internal Server Error during login" });
+      }
+
+     
+      res.cookie('username', user.username, { maxAge: 900000, httpOnly: true });
+      return res.status(200).json(user);
+    });
+  })(req, res);
+};
+
+const usersLogout = function (req, res) {
+  req.logout((err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Error during logout' });
+    }
+
+    // Logout successful, clear the cookie
+    res.clearCookie('username');
+    
+    // Set the Location header for redirect
+    res.setHeader('Location', '/');
+    
+    // Send 302 Found status
+    res.status(302).end();
+  });
+};
+
+
+
+
 module.exports = {
   usersCreate,
   usersList,
   usersReadOne,
   usersUpdateOne,
-  usersDeleteOne
+  usersDeleteOne,
+  usersLogin,
+  usersLogout
 };

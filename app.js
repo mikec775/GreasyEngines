@@ -7,13 +7,30 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
+const authRoutes = require('./auth');
 require('./app_api/models/db');
 
 const indexRouter = require('./app_server/routes/index');
 const apiRoutes = require('./app_api/routes/cars');
 
 const app = express();
+
+
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
+app.use(session({
+  secret: 'mikey',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'pug');
@@ -35,6 +52,7 @@ app.use('/api', cors({
 
 app.use('/', indexRouter);
 app.use('/api', apiRoutes);
+app.use('/api', authRoutes);
 
 app.post('/register', async (req, res) => {
   const Users = mongoose.model('Users');
@@ -67,5 +85,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
 
 module.exports = app;
