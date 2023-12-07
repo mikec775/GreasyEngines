@@ -1,21 +1,41 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('Users');
 
-const usersCreate = function(req, res) {
+
+const usersCreate = async function(req, res) {
   const { username, email, password } = req.body;
 
-  User.create({
-    username,
-    email,
-    password
-  }, function(err, user) {
-    if (err) {
-      res.status(400).json(err);
-    } else {
-      res.status(201).json(user);
+  try {
+   
+    const existingUser = await User.findOne({ username });
+
+    if (existingUser) {
+      return res.status(409).json({ "message": "Username already exists" });
     }
-  });
+
+    
+    const user = await User.create({
+      username,
+      email,
+      password
+    });
+
+    
+    res.cookie('username', user.username, { maxAge: 900000, httpOnly: true });
+    return res.status(201).json(user);
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ "message": "Internal Server Error" });
+  }
 };
+
+module.exports = {
+  usersCreate,
+  // other functions...
+};
+
+
 
 const usersList = function(req, res) {
     res
@@ -24,21 +44,25 @@ const usersList = function(req, res) {
 };
 
 const usersReadOne = function(req, res) {
-        if (req.params && req.params.userid) {
-          User.findById(req.params.userid)
-          .then((user, err) =>  {
-            if (!user) {
-              res.status(404).json({ "message": "User not found" });
-            } else if (err) {
-              res.status(404).json(err);
-            } else {
-              res.status(200).json(user);
-            }
-          });
-        } else {
-          res.status(404).json({ "message": "No userid in request" });
+  if (req.params && req.params.username) {
+    const username = req.params.username;
+
+    User.findOne({ username })
+      .then((user) => {
+        if (!user) {
+          return res.status(404).json({ "message": "User not found" });
         }
+        res.status(200).json(user);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).json({ "message": "Internal Server Error" });
+      });
+  } else {
+    res.status(404).json({ "message": "No username in request" });
+  }
 };
+
 
 
 

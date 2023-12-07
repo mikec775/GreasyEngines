@@ -9,10 +9,10 @@ router
   .post(UsersController.usersCreate);
 
 router
-  .route('/users/:userid')
+  .route('/users/:username')
   .get(UsersController.usersReadOne)
-  .put(UsersController.usersUpdateOne)
-  .delete(UsersController.usersDeleteOne);
+  .post(UsersController.usersReadOne)
+  
   
 router
   .route('/cars')

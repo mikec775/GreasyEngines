@@ -1,6 +1,34 @@
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const app = express();
+app.use(cookieParser());
+
+
+function setName(req) {
+    let usr = getCookie(req, 'username');
+
+    if (usr !== null) {
+        if (usr.length > 0) {
+            return usr;
+        } else {
+            return "";
+        }
+    }
+
+    return "";
+}
+
+function getCookie(req, name) {
+    return req.cookies[name] || null;
+}
+
 const cardata = function(req, res){
+    
+    const usr = setName(req);
+
     res.render('car-data', {
     title: 'Cars! Find a car for you!',
+    currentUsr: usr,
     pageHeader: { 
     title: 'Cars!', 
     strapline: 'Find the perfect car for you!' 
@@ -38,8 +66,12 @@ const cardata = function(req, res){
 };  
 
 const carinfo = function(req, res){
+    
+    const usr = setName(req);
+
     res.render('car-info', {
     title: 'Tesla Roadster',
+    currentUsr: usr,
     pageHeader: { 
     title: 'Tesla', 
     strapline: 'Find the perfect tesla for you!' 

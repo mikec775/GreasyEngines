@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const Car = mongoose.model('Cars');
 
-
 const carsCreate = function(req, res) {
+
+  const usr = setName(req);
+
   Car.create({ 
     brand: req.body.brand,
     modelname: req.body.modelname,
