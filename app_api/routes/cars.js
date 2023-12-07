@@ -1,18 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const ctrlCars = require('../controllers/cars');
+const CarsController = require('../controllers/cars');
+const UsersController = require('../controllers/users');
 
-// car
+router
+  .route('/users')
+  .get(UsersController.usersList)
+  .post(UsersController.usersCreate);
+
+router
+  .route('/users/:userid')
+  .get(UsersController.usersReadOne)
+  .put(UsersController.usersUpdateOne)
+  .delete(UsersController.usersDeleteOne);
+  
 router
   .route('/cars')
-  .get(ctrlCars.carsListByDistance)
-  .post(ctrlCars.carsCreate);
-
+  .get(CarsController.carsListByDistance)  
+  .post(CarsController.carsCreate);
 
 router
   .route('/cars/:carid')
-  .get(ctrlCars.carsReadOne)
-  .put(ctrlCars.carsUpdateOne)
-  .delete(ctrlCars.carsDeleteOne);
+  .get(CarsController.carsReadOne)
+  .put(CarsController.carsUpdateOne)
+  .delete(CarsController.carsDeleteOne);
 
 module.exports = router;

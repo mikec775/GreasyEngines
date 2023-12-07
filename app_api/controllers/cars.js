@@ -25,8 +25,6 @@ const carsCreate = function(req, res) {
   })
   };
 
-
-  
   const carsListByDistance = function (req, res) { res
     .status(200)
     .json({"status" : "success"});
