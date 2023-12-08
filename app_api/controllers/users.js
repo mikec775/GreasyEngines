@@ -114,18 +114,16 @@ const usersLogout = function (req, res) {
       return res.status(500).json({ message: 'Error during logout' });
     }
 
-    // Logout successful, clear the cookie
+    
     res.clearCookie('username');
     
-    // Set the Location header for redirect
+   
     res.setHeader('Location', '/');
     
-    // Send 302 Found status
+   
     res.status(302).end();
   });
 };
-
-
 
 
 module.exports = {

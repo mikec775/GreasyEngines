@@ -13,7 +13,7 @@ passport.use('local-login', new LocalStrategy(
   { usernameField: 'username' },
   async (username, password, done) => {
     try {
-      const user = await Users.findOne({ username });
+      const user = await User.findOne({ username });
 
       if (!user || !(await user.comparePassword(password))) {
         return done(null, false, { message: 'Invalid username or password' });
@@ -35,7 +35,7 @@ passport.use('local-register', new LocalStrategy(
       if (!user) {
         user = await User.create({
           username,
-          password: await User.hashPassword(password),
+          password,
         });
       } else if (!(await user.comparePassword(password))) {
         return done(null, false, { message: 'Invalid username or password' });
