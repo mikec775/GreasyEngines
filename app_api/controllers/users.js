@@ -114,13 +114,10 @@ const usersLogout = function (req, res) {
       return res.status(500).json({ message: 'Error during logout' });
     }
 
-    
     res.clearCookie('username');
     
-   
     res.setHeader('Location', '/');
     
-   
     res.status(302).end();
   });
 };
