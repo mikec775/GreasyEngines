@@ -53,10 +53,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_public', 'build')));
 
 
-app.use('/api', cors({
-  origin: 'http://localhost:4200',
-  credentials: true
-}));
+const corsOptions = {
+  origin: ['http://localhost:4200', 'https://greasyengines.onrender.com'], 
+  credentials: true,
+};
+
+app.use('/api', cors(corsOptions));
 
 
 app.use('/', indexRouter);
