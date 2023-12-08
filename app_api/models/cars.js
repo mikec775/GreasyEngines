@@ -39,10 +39,8 @@ const userSchema = new mongoose.Schema({
 userSchema.pre('save', function (next) {
   const user = this;
 
-  // Check if the password is modified or the user is new
   if (!user.isModified('password')) return next();
 
-  // Hash the password
   bcrypt.genSalt(10, (err, salt) => {
     if (err) return next(err);
 

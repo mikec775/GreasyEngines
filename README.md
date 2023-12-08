@@ -16,5 +16,4 @@ The backend of Greasy Engines is built using Node.js, Express, and MongoDB. Ensu
 ```bash
 npm start
 
-```bash
 node_modules\.bin\nodemon
